@@ -375,7 +375,7 @@ async def rename(client, message):
             lztext = f"{msg.text}\n\nwith ❤ @LazyDeveloperr"
             if got_lazy_file:
                 await lazy_userbot.send_message(Forward, lztext or "", file=got_lazy_file)
-                await asyncio.sleep(0.5)
+                # await asyncio.sleep(1)
                 forwarded_lazy_count += 1
             else:
                 print(f"Skipped non-media message with ID {msg.id}")
