@@ -362,21 +362,20 @@ async def rename(client, message):
     # Iterating through messages
     max_limit = 100  # High limit to fetch more messages if some are skipped
     forwarded_lazy_count = 0
-    max_forward_lazy_count = 100 #MAX_FORWARD #// 20 
+    max_forward_lazy_count = 500 #MAX_FORWARD #// 20 
     skiped_lazy_files = 0 
     try:
         async for msg in lazy_userbot.iter_messages(target_chat_id, limit=700000):
             # Forward or process the message
             if forwarded_lazy_count >= max_forward_lazy_count:
-                await asyncio.sleep(30)
+                await asyncio.sleep(60)
                 max_forward_lazy_count = 0
-                continue
             
             got_lazy_file = msg.document or msg.video
             lztext = f"{msg.text}\n\nwith ❤ @LazyDeveloperr"
             if got_lazy_file:
                 await lazy_userbot.send_message(Forward, lztext or "", file=got_lazy_file)
-                # await asyncio.sleep(0.5)
+                # await asyncio.sleep(1)
                 forwarded_lazy_count += 1
             else:
                 print(f"Skipped non-media message with ID {msg.id}")
