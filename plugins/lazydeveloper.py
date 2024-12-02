@@ -369,19 +369,20 @@ async def rename(client, message):
             # Forward or process the message
             if forwarded_lazy_count >= max_forward_lazy_count:
                 await asyncio.sleep(30)
+                max_forward_lazy_count = 0
                 continue
             
             got_lazy_file = msg.document or msg.video
             lztext = f"{msg.text}\n\nwith ❤ @LazyDeveloperr"
             if got_lazy_file:
                 await lazy_userbot.send_message(Forward, lztext or "", file=got_lazy_file)
-                # await asyncio.sleep(1)
+                # await asyncio.sleep(0.5)
                 forwarded_lazy_count += 1
             else:
                 print(f"Skipped non-media message with ID {msg.id}")
             
-            await asyncio.sleep(1)
-        await message.reply(f"📜Files forwarded = {forwarded_lazy_count} ! \n🗑Files Skipped  = {skiped_lazy_files}")
+            # await asyncio.sleep(1)
+        # await message.reply(f"📜Files forwarded = {forwarded_lazy_count} ! \n🗑Files Skipped  = {skiped_lazy_files}")
     except Exception as e:
         print(f"Error occurred: {e}")
         await message.reply("❌ Failed to process messages.")
