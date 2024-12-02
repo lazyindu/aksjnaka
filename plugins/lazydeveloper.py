@@ -369,7 +369,7 @@ async def rename(client, message):
             # Forward or process the message
             if forwarded_lazy_count >= max_forward_lazy_count:
                 await asyncio.sleep(60)
-                max_forward_lazy_count = 0
+                forwarded_lazy_count = 0
             
             got_lazy_file = msg.document or msg.video
             lztext = f"{msg.text}\n\nwith ❤ @LazyDeveloperr"
